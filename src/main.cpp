@@ -23,6 +23,12 @@ int main() {
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
+            } else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+                auto pos = sf::Mouse::getPosition(window);
+                float radius = rand() % 15 + 5;
+                sf::Color color(rand() % 255, rand() % 255, rand() % 255);
+                auto circle = CircleObject(sf::Vector2f(pos.x, pos.y), sf::Vector2f(0, ACC), radius, color);
+                solver.add_circle(circle);
             }
         }
 
